@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping list example</title>
+    <style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 12px;
+        margin-left: 20px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>My shopping list</h1>
+
+    <div>
+      <label for="item">Enter a new item:</label>
+      <input type="text" name="item" id="item">
+      <button>Add item</button>
+    </div>
+
+    <ul>
+
+    </ul>
+
+    <script>
+      const list = document.querySelector("ul");  //new variable refrencing ul element
+      let input = document.querySelector("input");  // new variable refrencing input element
+      const btn = document.querySelector("button"); // new variable refrencing button element
+      
+      btn.addEventListener("click",()=>{  //function that will tell what happens when we click the button
+        let inputValue = document.getElementById("item").value; // inputValue store the value of input field
+        input.value = ""; // it will empty the input field
+        
+        let listElement = document.createElement("li"); // new li element to add items on the list 
+        
+        let span = document.createElement("span"); // to add text content on the list item
+        span.textContent = inputValue;  // span equals to the inputValue which returns the input value
+        listElement.appendChild(span);  // append the span on the listElement
+        
+        let btnt = document.createElement("button"); // new button to delete the particular listElement 
+        btnt.textContent = "Delete";
+        btnt.addEventListener("click",()=>{ // function to delete the li element
+          const element = listElement;
+          element.remove();
+        });
+        listElement.appendChild(btnt); // it will append the button on the list element 
+        
+        list.appendChild(listElement);  // it will append the listElement to the list which is refrencing ul element of html
+        
+        input.focus(); // focus on the input field
+      });
+    </script>
+  </body>
+</html>
